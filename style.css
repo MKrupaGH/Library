@@ -58,7 +58,7 @@ form {
   margin: 10px;
 }
 
-input {
+input,.delete {
   font-size: 1.2rem;
   min-height: 25px;
   border: 2px solid lightblue;
@@ -73,7 +73,7 @@ select {
   border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="submit"],.delete {
   font-weight: bold;
   padding: 10px;
   background-color: lightblue;
@@ -110,4 +110,14 @@ td {
 
 tr:nth-of-type(2n) {
   color: lightblue;
+}
+
+.delete{
+  background-color: lightcoral;
+  border: 2px solid lightcoral;
+  border-radius: 5px;
+}
+
+.delete:hover{
+  background-color: red;
 }
