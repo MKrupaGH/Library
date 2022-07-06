@@ -68,11 +68,45 @@ function showList() {
         <button class="delete" data-value="${index}">Delete</button>
         </td>
       </tr> `;
+
     $list.insertAdjacentHTML("afterbegin", bookListed);
+
+    const btn = document.querySelector(".change");
+
+    if (book.status === "Not read") {
+      btn.classList.add("change-notRead");
+    } else {
+      btn.classList.add("change-read");
+    }
   });
 
-  let deleteBtns = document.querySelectorAll(".delete").forEach((btn) => {
-    btn.addEventListener("click", (e) => findBook(e));
+  document.querySelectorAll(".delete").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const findedIndex = findBook(e);
+      myLibrary.splice(findedIndex, 1);
+      e.target.parentElement.parentElement.remove();
+      updateStorage();
+    });
+  });
+
+  document.querySelectorAll(".change").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const findedIndex = findBook(e);
+
+      if (e.target.textContent === "Not read") {
+        myLibrary[findedIndex].status = "Read";
+        e.target.classList.remove("change-notRead");
+        e.target.classList.add("change-read");
+        e.target.textContent = "Read";
+        updateStorage();
+      } else if (e.target.textContent === "Read") {
+        myLibrary[findedIndex].status = "Not read";
+        e.target.classList.remove("change-read");
+        e.target.classList.add("change-notRead");
+        e.target.textContent = "Not read";
+        updateStorage();
+      }
+    });
   });
 }
 
@@ -82,7 +116,6 @@ function clearForm() {
   $pages.value = "";
 }
 
-function findBook(index) {
-  console.log(index.target.getAttribute("data-value"));
-  return index.target.getAttribute("data-value");
+function findBook(listenerTarget) {
+  return listenerTarget.target.getAttribute("data-value");
 }
