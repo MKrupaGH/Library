@@ -121,3 +121,30 @@ function clearForm() {
 function findBook(listenerTarget) {
   return listenerTarget.target.getAttribute("data-value");
 }
+
+document.querySelectorAll("input").forEach((input) => {
+  input.addEventListener("input", () => {
+    input.setCustomValidity("");
+  });
+});
+
+$title.addEventListener("invalid", () => {
+  if ($title.value === "") {
+    $title.setCustomValidity("Enter title!");
+  }
+});
+
+$author.addEventListener("invalid", () => {
+  if ($author.value === "") {
+    $author.setCustomValidity("Enter author!");
+  } else if ($author.validity.patternMismatch) {
+    $author.setCustomValidity("You should use only letters!");
+  }
+});
+
+$pages.addEventListener("invalid", () => {
+  console.log("work");
+  if ($pages.value === "" || $pages.value === "0") {
+    $pages.setCustomValidity("The number of pages has to be min. 1");
+  }
+});

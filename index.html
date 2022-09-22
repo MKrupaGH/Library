@@ -21,19 +21,19 @@
             <form action="">
                 <div class="inputs">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" required>
+                    <input type="text" name="title" id="title" maxlength="30" required>
                 </div>
                 <div class="inputs">
                     <label for="author">Author</label>
-                    <input type="text" name="author" id="author" required>
+                    <input type="text" name="author" id="author" pattern="[A-Za-z ]+" required>
                 </div>
                 <div class="inputs">
                     <label for="pages">Pages</label>
-                    <input type="number" name="pages" id="pages" required>
+                    <input type="number" name="pages" id="pages" min="1" required>
                 </div>
                 <div class="inputs">
                     <label for="status">Status</label>
-                    <select name="status" id="status" required>
+                    <select name="status" id="status">
                         <option value="Read">Read</option>
                         <option value="Not read" selected="selected">Not read</option>
                     </select>
